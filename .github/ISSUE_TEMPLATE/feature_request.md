@@ -7,8 +7,10 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-As a user I would like to...
+## Overview
+<!-- Add description of the task -->
+<!-- Add screenshots related to the task -->
 
-**Additional context**
-Add any other context, links or screenshots about the feature request here.
+## Technical Notes
+<!-- Add details to relevant implementation that you think might be helpful -->
+<!-- Add links to documentation -->
