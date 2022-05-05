@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'food_review'
+    'food_review',
+    'phonenumber_field'
 ]
 
 MIDDLEWARE = [
