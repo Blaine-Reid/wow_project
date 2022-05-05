@@ -10,7 +10,8 @@ class TypeOfFood(models.Model):
 
     # Type of food
     type_of_food = models.CharField(
-        help_text="Type of food served by restaurant"
+        help_text="Type of food served by restaurant",
+        max_length= 50
     )
 
 # ------------------------------------------------------------
@@ -24,33 +25,30 @@ class Restaurant(models.Model):
     name = models.CharField(
         help_text="Name of the restaurant.",
         max_length=250,
-        required= True
             
     )
     #Street address 
     street_address = models.CharField(
         help_text="Address of the restaurant.",
         max_length=250,
-        required= True
+        # required= True
     )
     # City
     city = models.CharField(
         help_text="City restaurant is located in.",
         max_length=100,
-        required= True
+        # required= True
     )
     # Zip code (5-digit)
     zip = models.IntegerField(
         help_text="Zip code of restaurant location.",
-        max_length=5,
-        required= True
     )
+
     # Phone (###)###-####
     phone = PhoneNumberField(
         null=False,
         blank=False, 
         unique=True,
-        required= True
         )
 
     # Aggregated rating from all ratings given
