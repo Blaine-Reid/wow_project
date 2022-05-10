@@ -108,7 +108,7 @@ def create_restaurants():
             ]
         },
         {
-            "name":"crescent city bourbnon & bbq",
+            "name":"crescent city bourbon & bbq",
             "street_address":"19 salem ave",
             "city":"roanoke",
             "state":"VA",
