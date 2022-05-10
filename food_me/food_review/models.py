@@ -60,9 +60,15 @@ class Restaurant(models.Model):
         max_length=100,
         # required= True
     )
+    # State
+    state = models.CharField(
+        help_text="State of restaurant location.",
+        max_length=2
+    )
     # Zip code (5-digit)
-    zip = models.IntegerField(
+    zip = models.CharField(
         help_text="Zip code of restaurant location.",
+        max_length=5
     )
     # Phone (###)###-####
     phone = PhoneNumberField(
