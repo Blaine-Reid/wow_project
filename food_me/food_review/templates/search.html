@@ -1,8 +1,11 @@
+<h1>Its working!</h1>
+
 {% extends 'base.html' %}
 <!-- Title Section -->
 {% block title %}Food Me - Find Your Favorite Food{% endblock title %}
 <!-- Content Section -->
 {% block content %}
+<h2>{{query}}</h2>
 <!-- <ul>
   {% for timeframe in timeframes reversed %} {% if timeframe == 'monthly' %}
   <li><a href="{% url 'namedurl' timeframe %}">{{ timeframe|upper }}</a></li>
