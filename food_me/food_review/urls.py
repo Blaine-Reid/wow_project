@@ -8,3 +8,4 @@ urlpatterns = [
     path("restaurant/<int:restaurant_id>",
          RestaurantProfile.as_view(), name='restaurant'),
 ]
+

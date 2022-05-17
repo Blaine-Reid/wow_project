@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 from django.views import View
 from food_review.models import Restaurant
-
+from food_review.forms import AddRestaurant
 # Create your views here.
 
 
@@ -20,7 +20,6 @@ class SearchView(View):
 
         try:
             search = request.GET['q']
-
             restaurants = Restaurant.objects.filter(
                 name__startswith=str(search))
 
@@ -34,8 +33,13 @@ class SearchView(View):
         except:
 
             return render(request, "search.html")
+          
+          
+class AddRestaurantView(View):
+    def get(self, request):
+        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant})
 
-
+ 
 class RestaurantProfile(View):
 
     def get(self, request, restaurant_id):
