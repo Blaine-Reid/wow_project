@@ -3,5 +3,19 @@
 {% block title %}Food Me - {{restaurant.name}}{% endblock title %}
 <!-- Content Section -->
 {% block content %}
-<h1>Restaurant</h1>
+<div class="card mt-4" style="width: 95%; margin-left: 2.5%">
+    {% load static %}
+    <img src="{% static '/absinthe.jpeg' %}" class="card-img-top" style="" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Absinthe Brasserie & Bar</h5>
+      <p class="card-text">398 Hayes St, San Francisco, CA 94102</p>
+      <p class="card-text">Absinthe Brasserie & Bar is located in San Francisco's vibrant and charming Hayes Valley neighborhood, and is among the city’s beloved longest-running dining institutions. It features a creative menu of French brasserie fare, along with an inspired selection of classic cocktails. With lively, informal décor that evokes turn-of-the-century France, Absinthe’s warm, convivial atmosphere has romanced locals and visitors alike since its founding in 1998.</p>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Review
+      </button>
+    </div>
+  </div>
+
+{% include "review.html"%}
+
 {% endblock content %}
