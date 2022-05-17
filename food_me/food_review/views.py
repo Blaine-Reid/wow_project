@@ -8,6 +8,8 @@ from food_review.models import Restaurant
 
 
 class HomePageView(View):
+    """Renders home page"""
+
     def get(self, request):
         return render(request, "index.html")
 
@@ -18,6 +20,7 @@ class SearchView(View):
 
         try:
             search = request.GET['q']
+
             restaurants = Restaurant.objects.filter(name__contains=str(search))
 
             context = {
@@ -28,7 +31,8 @@ class SearchView(View):
             return render(request, "search.html", context=context)
 
         except:
-            context = {
-                "search": ''
-            }
+            # context = {
+            #     "search": ''
+            # }
+
             return render(request, "search.html", context=context)
