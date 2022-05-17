@@ -1,5 +1,3 @@
-<h1>Its working!</h1>
-
 {% extends 'base.html' %}
 <!-- Title Section -->
 {% block title %}Food Me - Find Your Favorite Food{% endblock title %}
@@ -14,7 +12,24 @@
 </form>
 
 {% for restaurant in restaurants %}
-<a href="{% url '' %}"
-<p>{{ restaurant.name }}</p>
-<p>{{ restaurant.street_address }}</p>
+
+<div class="card bg-light" style="width: 20rem">
+  <div class="card-header bg-info">
+    <div class="row">
+      <h5 class="col-9">{{ restaurant.name|capfirst }}</h5>
+      <span class="col">{{restaurant.avg_rating}}</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{ restaurant.street_address}}</p>
+    <p class="card-text">
+      {{ restaurant.city|capfirst}}, {{ restaurant.state|upper}}
+      {{restaurant.zip}}
+    </p>
+    <p class="card-text">{{ restaurant.phone}}</p>
+    <a href="{% url 'restaurant' restaurant.id %}" class="btn btn-primary"
+      >More Info</a
+    >
+  </div>
+</div>
 {% endfor %} {% endblock content %}

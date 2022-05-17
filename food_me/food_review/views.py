@@ -21,18 +21,22 @@ class SearchView(View):
         try:
             search = request.GET['q']
 
-            restaurants = Restaurant.objects.filter(name__contains=str(search))
+            restaurants = Restaurant.objects.filter(
+                name__startswith=str(search))
 
             context = {
                 "search": search,
                 "restaurants":  restaurants
             }
-            print(restaurants)
-            return render(request, "search.html", context=context)
+
+            return render(request, "search.html", context)
 
         except:
-            # context = {
-            #     "search": ''
-            # }
 
-            return render(request, "search.html", context=context)
+            return render(request, "search.html")
+
+
+class RestaurantProfile(View):
+
+    def get(self, request, restaurant_id):
+        return render(request,"restaurant_profile.html")
