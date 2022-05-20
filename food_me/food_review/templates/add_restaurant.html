@@ -2,4 +2,10 @@
 <!-- Title Section -->
 {% block title %}Food Me - Add Your Favorite Restaurant{% endblock title %}
 <!-- Content Section -->
-{% block content %} {{AddRestaurant}} {% endblock content %}
+{% block content %} {% include 'nav_bar.html' %}
+<form action="" method="post">
+{%csrf_token%}
+{{AddRestaurant}}
+<input type="submit" value="Add Restaurant" name="add">
+</form>
+ {% endblock content %}

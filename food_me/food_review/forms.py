@@ -13,11 +13,10 @@ class AddRestaurant(forms.Form):
     zip_code = forms.CharField(label = "Zip Code", max_length=5)
     phone_number = forms.CharField(label = "Phone Number", max_length = 10)
     type_food = forms.MultipleChoiceField( choices=[(tq.pk, tq.__str__()) for tq in TypeOfFood.objects.all()])
-    
+    tag = forms.MultipleChoiceField(choices = [(tq.pk, tq.__str__()) for tq in Tag.objects.all()])
 
 
 
 class AddRestaurantReview(forms.Form):
-    tag = forms.MultipleChoiceField(choices = [(tq.pk, tq.__str__()) for tq in Tag.objects.all()])
     rating = forms.IntegerField(label = "How would you rate this restaurant?", max_value = 5)
     review = forms.CharField(label = "Your review", max_length = 500)

@@ -2,7 +2,7 @@ from django.http import QueryDict
 from django.shortcuts import render
 
 from django.views import View
-from food_review.models import Restaurant
+from food_review.models import Restaurant, TypeOfFood, Tag
 from food_review.forms import AddRestaurant
 # Create your views here.
 
@@ -37,10 +37,28 @@ class SearchView(View):
           
 class AddRestaurantView(View):
     def get(self, request):
+    
+        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant})
+    def post(self, request):
+        restaurant={
+        "name":request.POST["resturant_name"],
+        "street_address":request.POST["address"],
+        "city":request.POST["city"],
+        "state":request.POST["state"],
+        "zip":request.POST["zip_code"],
+        "phone":request.POST["phone_number"],
+        "type_food":TypeOfFood(id=int(request.POST["type_food"])),
+        "avg_rating": 10 
+        }
+        new_restaurant=Restaurant.objects.create(**restaurant) 
+        new_restaurant.tags.set(request.POST.getlist("tag"))
+            
         return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant})
 
+        
  
 class RestaurantProfile(View):
 
+
     def get(self, request, restaurant_id):
-        return render(request,"restaurant_profile.html")
+        return render(request,"restaurant_profile.html", context={"restaurant_id": restaurant_id})

@@ -4,7 +4,7 @@
 
 <!-- Content Section -->
 {% block content %}
-
+{% include 'nav_bar.html' %}
 <h1>Search for a restaurant</h1>
 <form action="{% url 'search' %}" method="get">
   {% csrf_token %}
