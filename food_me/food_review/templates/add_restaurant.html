@@ -6,6 +6,16 @@
 <form action="" method="post">
 {%csrf_token%}
 {{AddRestaurant}}
+<!-- {% for tag in tags %}
+
+<p>
+    <label for={{tag.id}}>
+      <input type="checkbox" name={{tag.id}} id={{tag.id}} />
+      <span>{{tag.tag_name}}</span>
+    </label>
+  </p>
+{% endfor %} -->
+
 <input type="submit" value="Add Restaurant" name="add">
 </form>
  {% endblock content %}

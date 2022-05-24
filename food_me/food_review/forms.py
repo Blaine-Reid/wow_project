@@ -12,8 +12,11 @@ class AddRestaurant(forms.Form):
     state = forms.CharField(label = "State", max_length=50)
     zip_code = forms.CharField(label = "Zip Code", max_length=5)
     phone_number = forms.CharField(label = "Phone Number", max_length = 10)
-    type_food = forms.MultipleChoiceField( choices=[(tq.pk, tq.__str__()) for tq in TypeOfFood.objects.all()])
-    tag = forms.MultipleChoiceField(choices = [(tq.pk, tq.__str__()) for tq in Tag.objects.all()])
+    type_food = forms.ChoiceField( choices=[(tq.pk, tq.__str__()) for tq in TypeOfFood.objects.all()])
+        
+    tag = forms.MultipleChoiceField(choices = [(tq.pk, tq.__str__()) for tq in Tag.objects.all()],
+    widget = forms.CheckboxSelectMultiple())
+        
 
 
 

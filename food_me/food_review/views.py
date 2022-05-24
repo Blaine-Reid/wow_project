@@ -37,8 +37,8 @@ class SearchView(View):
           
 class AddRestaurantView(View):
     def get(self, request):
-    
-        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant})
+        tags=Tag.objects.all()
+        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant, "tags": tags})
     def post(self, request):
         restaurant={
         "name":request.POST["resturant_name"],
@@ -52,6 +52,7 @@ class AddRestaurantView(View):
         }
         new_restaurant=Restaurant.objects.create(**restaurant) 
         new_restaurant.tags.set(request.POST.getlist("tag"))
+        print(request.POST)
             
         return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant})
 
@@ -61,4 +62,5 @@ class RestaurantProfile(View):
 
 
     def get(self, request, restaurant_id):
-        return render(request,"restaurant_profile.html", context={"restaurant_id": restaurant_id})
+        restaurant=Restaurant.objects.get(id=restaurant_id)
+        return render(request,"restaurant_profile.html", context={"restaurant_id": restaurant_id, "restaurant": restaurant})
