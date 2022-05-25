@@ -1,5 +1,5 @@
 from django.urls import path
-from food_review.views import HomePageView, SearchView, RestaurantProfile, AddRestaurantView
+from food_review.views import HomePageView, SearchView, RestaurantProfile, AddRestaurantView, Comments
 
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path('add/', AddRestaurantView.as_view(), name='add'),
     path("restaurant/<int:restaurant_id>",
          RestaurantProfile.as_view(), name='restaurant'),
+    path("restaurant/<int:restaurant_id>/comment/<int:comment_id>",
+         Comments.as_view(), name='comment'),
 ]
-

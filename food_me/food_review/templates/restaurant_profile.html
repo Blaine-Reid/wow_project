@@ -1,22 +1,52 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %}
 <!-- Title Section -->
 {% block title %}Food Me - {{restaurant.name}}{% endblock title %}
 <!-- Content Section -->
 {% block content %}
+ {% include 'nav_bar.html' %}
 <div class="card mt-4" style="width: 95%; margin-left: 2.5%">
-    {% load static %}
-    <img src="{% static '/absinthe.jpeg' %}" class="card-img-top" style="" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{restaurant.name|title}}</h5>
-      <p class="card-text">{{restaurant.street_address|title}} {{restaurant.city|title}}, {{restaurant.state|upper}} {{restaurant.zip}}
-      </p>
-      <p class="card-text">Absinthe Brasserie & Bar is located in San Francisco's vibrant and charming Hayes Valley neighborhood, and is among the city’s beloved longest-running dining institutions. It features a creative menu of French brasserie fare, along with an inspired selection of classic cocktails. With lively, informal décor that evokes turn-of-the-century France, Absinthe’s warm, convivial atmosphere has romanced locals and visitors alike since its founding in 1998.</p>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add Review
-      </button>
-    </div>
+  <img
+    src="{% static '/absinthe.jpeg' %}"
+    class="card-img-top"
+    style=""
+    alt="..."
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{restaurant.name|title}}</h5>
+    <h6 class="card-title">{{restaurant.type_food|title}}</h6>
+    <p class="card-text">
+      {{restaurant.street_address|title}} {{restaurant.city|title}},
+      {{restaurant.state|upper}} {{restaurant.zip}}
+    </p>
+    <p>{{restaurant.phone}}</p>
+
+    {% comment %} TAGS {% endcomment %} {% for tag in tags%}
+
+    <p class="pill">{{tag}}</p>
+    {% endfor%}
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Add Review
+    </button>
+
+    {% comment %} TAGS {% endcomment %} 
+    {% for comment in comments%}
+    <form action={%url 'comment' restaurant.id comment.id%} method="post">
+      {%csrf_token%}
+      <p class="">{{comment.date_created}}</p>
+      <textarea class="" name="content">{{comment.body}}</textarea>
+      <input type="input" name="rating" value={{comment.rating}} />
+      <button type="submit" name="patch">Save</button> 
+      <button type="submit" name="delete">Delete</button>
+    </form>
+
+    {% endfor%}
   </div>
+</div>
 
-{% include "review.html"%}
-
-{% endblock content %}
+{% include "review.html"%} {% endblock content %}
