@@ -1,10 +1,10 @@
 from xml.etree.ElementTree import Comment
 from django.http import QueryDict
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
 from django.views import View
 from food_review.models import Restaurant, TypeOfFood, Tag, Comment
-from food_review.forms import AddRestaurant
+from food_review.forms import AddRestaurant, AddRestaurantTags
 # Create your views here.
 
 
@@ -32,6 +32,7 @@ class HomePageView(View):
 
 
 class SearchView(View):
+    '''Search for a restaurant'''
 
     def get(self, request):
 
@@ -53,9 +54,11 @@ class SearchView(View):
 
 
 class AddRestaurantView(View):
+    '''Add a restaurant'''
+
     def get(self, request):
         tags = Tag.objects.all()
-        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant, "tags": tags})
+        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant, "tags": tags,  "AddRestaurantTags": AddRestaurantTags})
 
     def post(self, request):
         restaurant = {
@@ -70,11 +73,13 @@ class AddRestaurantView(View):
         }
         new_restaurant = Restaurant.objects.create(**restaurant)
         new_restaurant.tags.set(request.POST.getlist("tag"))
+        new_restaurant_id = new_restaurant.id
 
-        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant})
+        return redirect(f'/restaurant/{new_restaurant_id}')
 
 
 class RestaurantProfile(View):
+    '''View comments and details of restaurant'''
 
     def get(self, request, restaurant_id):
         return RenderRestaurant(request, restaurant_id)
@@ -92,19 +97,22 @@ class RestaurantProfile(View):
 
 
 class Comments(View):
+    '''Modifying comments of a restaurant'''
+
     def post(self, request, restaurant_id, comment_id):
 
         comment = Comment.objects.get(id=comment_id)
-        print(comment)
 
-        # # UPDATE TASK
+        # # UPDATE COMMENT
         if 'patch' in request.POST:
             comment.body = request.POST['content']
             comment.date_updated = datetime.today()
             comment.rating = request.POST['rating']
             comment.save()
 
+        # DELETE A COMMENT
         if 'delete' in request.POST:
             comment.delete()
+            return redirect(f'/restaurant/{restaurant_id}')
 
         return RenderRestaurant(request, restaurant_id)

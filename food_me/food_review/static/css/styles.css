@@ -1,3 +1,14 @@
-nav{ background-color: 'blue'}
-input[type="checkbox"]{ border: 1px solid black !important;} 
-body{ background-color: 'blue'}
+#id_tag {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#forms select {
+  padding: 8px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
