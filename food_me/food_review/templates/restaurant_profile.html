@@ -5,12 +5,7 @@
 {% block content %}
  {% include 'nav_bar.html' %}
 <div class="card mt-4" style="width: 95%; margin-left: 2.5%">
-  <img
-    src="{% static '/absinthe.jpeg' %}"
-    class="card-img-top"
-    style=""
-    alt="..."
-  />
+  
   <div class="card-body">
     <h5 class="card-title">{{restaurant.name|title}}</h5>
     <h6 class="card-title">{{restaurant.type_food|title}}</h6>
@@ -25,22 +20,19 @@
     <p class="pill">{{tag}}</p>
     {% endfor%}
 
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Add Review
-    </button>
-
+    {% include "review.html"%}
     {% comment %} TAGS {% endcomment %} 
     {% for comment in comments%}
     <form action={%url 'comment' restaurant.id comment.id%} method="post">
       {%csrf_token%}
       <p class="">{{comment.date_created}}</p>
-      <textarea class="" name="content">{{comment.body}}</textarea>
-      <input type="input" name="rating" value={{comment.rating}} />
+      <label for="content">Review:
+        <textarea class="" name="content">{{comment.body}}</textarea>
+      </label>
+      <label for="Rating">Rating:
+        <input type="input" name="rating" value={{comment.rating}} />
+      </label>
+      
       <button type="submit" name="patch">Save</button> 
       <button type="submit" name="delete">Delete</button>
     </form>
@@ -49,4 +41,4 @@
   </div>
 </div>
 
-{% include "review.html"%} {% endblock content %}
+ {% endblock content %}
