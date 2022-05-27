@@ -73,8 +73,9 @@ class AddRestaurantView(View):
         }
         new_restaurant = Restaurant.objects.create(**restaurant)
         new_restaurant.tags.set(request.POST.getlist("tag"))
+        new_restaurant_id = new_restaurant.id
 
-        return render(request, "add_restaurant.html", {"AddRestaurant": AddRestaurant, "AddRestaurantTags": AddRestaurantTags})
+        return redirect(f'/restaurant/{new_restaurant_id}')
 
 
 class RestaurantProfile(View):
