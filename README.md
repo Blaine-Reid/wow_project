@@ -2,16 +2,22 @@
 A restaurant 'journal' that allows users to track thier person culinary journey and the experiences they had at each restaurant
 
 ## Home Page
+The landing page for all users that gives them the option to search for a restaurant or add a new one.
 ![](Screenshots\home-page.jpg)
 
 ## Search Restaurant Page
+The page that a user lands on when they chose to search for an existing restaurant or view a list of all the rstaurants in the jounal.
 ![](Screenshots\search-restaurants-page.jpg)
 
+## Restaurant Profile Page
+Once a user choses a restaurant they will land on the restaurant profile page. In this location they can view previous reviews as well as add, edit, and deltete existing reviews.
+![](Screenshots\restaurant-profile-page.jpg)
+
 ## Add Restuartant Page
+The page that the user lands on when they chose to add a restaurant to the journal. Once a restaurant has been added they will be redirected to the restauant profile page to document their experience at the restaurant.
 ![](Screenshots\add-restaurant-page.jpg)
 
-## Restaurant Profile Page
-![](Screenshots\restaurant-profile-page.jpg)
+
 
 
 # To Use
