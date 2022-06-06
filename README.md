@@ -6,12 +6,12 @@ The landing page for all users that gives them the option to search for a restau
 ![](Screenshots/home_page.jpg)
 
 ## Search Restaurant Page
-The page that a user lands on when they chose to search for an existing restaurant or view a list of all the rstaurants in the jounal.
-![](Screenshots/search_restaurants-page.jpg)
+The page that a user lands on when they chose to search for an existing restaurant or view a list of all the restaurants in the jounal.
+![](Screenshots/search_restaurants_page.jpg)
 
 ## Restaurant Profile Page
 Once a user choses a restaurant they will land on the restaurant profile page. In this location they can view previous reviews as well as add, edit, and deltete existing reviews.
-![](Screenshots/restaurant_profile-page.jpg)
+![](Screenshots/restaurant_profile_page.jpg)
 
 ## Add Restuartant Page
 The page that the user lands on when they chose to add a restaurant to the journal. Once a restaurant has been added they will be redirected to the restauant profile page to document their experience at the restaurant.
